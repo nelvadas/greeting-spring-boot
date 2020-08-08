@@ -21,7 +21,17 @@ jobs:
         java-version: 1.8
     - name: Compiler le JAR
       run: mvn -B package --file pom.xml
-    
+    - name: PWD
+      run: pwd
+    - name: Construire l'image docker
+      uses: docker/build-push-action@v1.1.0
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: nelvadas/modelis-java-app
+        tags: 1.0.1
+        tag_with_ref: true
+        tag_with_sha: true
     
   deploy:
     needs: [build]
@@ -31,5 +41,6 @@ jobs:
         run:  ls -rtl
       - name: PWD
         run: pwd
-      - name: Constuire l'image Docker 
-        run: echo "je construit docker image"
+      - name: Deployer l'application sur AWS
+        run:  echo TODO
+ 
