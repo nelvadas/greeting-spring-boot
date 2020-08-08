@@ -15,10 +15,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK 1.8
+    - name: Recuperer le code source
+      uses: actions/checkout@v2
+    - name: Installer JDK8 et Maven
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Build Application JAR
+    - name: Compiler le JAR
       run: mvn -B package --file pom.xml
+    - name: Afficher le Dossier Target
+      run:  ls -rtl
