@@ -22,10 +22,13 @@ jobs:
     - name: Compiler le JAR
       run: mvn -B package --file pom.xml
     
+    
   deploy:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Afficher le Dossier Target
         run:  ls -rtl
       - name: PWD
         run: pwd
+      - name: Constuire l'image Docker 
