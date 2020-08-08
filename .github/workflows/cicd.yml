@@ -10,7 +10,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build_job:
     runs-on: ubuntu-latest
     steps:
     - name: Recuperer le code source
@@ -23,8 +23,8 @@ jobs:
       run: mvn -B package --file pom.xml
     
     
-  deploy:
-    needs: [build]
+  deploy_job:
+    needs: [build_job]
     runs-on: ubuntu-latest
     steps:
       - name: Afficher le Dossier Target
