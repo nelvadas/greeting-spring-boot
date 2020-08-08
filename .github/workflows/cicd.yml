@@ -22,7 +22,7 @@ jobs:
     - name: Compiler le JAR
       run: mvn -B package --file pom.xml
     - name: PWD
-      run: pwd
+      run: pwd & ls -rtl
     - name: Construire l'image docker
       uses: docker/build-push-action@v1.1.0
       with:
@@ -37,10 +37,9 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
-      - name: Afficher le Dossier Target
-        run:  ls -rtl
+      
       - name: PWD
-        run: pwd
+        run: pwd & ls -rtl 
       - name: Deployer l'application sur AWS
         run:  echo TODO
  
