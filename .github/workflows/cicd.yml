@@ -10,7 +10,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build_job:
+  build:
     runs-on: ubuntu-latest
     steps:
     - name: Recuperer le code source
@@ -23,8 +23,8 @@ jobs:
       run: mvn -B package --file pom.xml
     
     
-  deploy_job:
-    needs: [build_job]
+  deploy:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Afficher le Dossier Target
@@ -32,3 +32,4 @@ jobs:
       - name: PWD
         run: pwd
       - name: Constuire l'image Docker 
+        run: echo "je construit docker image"
