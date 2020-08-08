@@ -11,9 +11,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - name: Recuperer le code source
       uses: actions/checkout@v2
@@ -23,5 +21,11 @@ jobs:
         java-version: 1.8
     - name: Compiler le JAR
       run: mvn -B package --file pom.xml
-    - name: Afficher le Dossier Target
-      run:  ls -rtl
+    
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Afficher le Dossier Target
+        run:  ls -rtl
+      - name: PWD
+        run: pwd
