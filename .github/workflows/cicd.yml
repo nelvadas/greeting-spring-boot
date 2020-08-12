@@ -24,7 +24,7 @@ jobs:
     - name: PWD
       run: pwd & ls -rtl
       
-    - name: Copie JAR sur AWS 
+    - name: Deploiement des JAR 
       uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.AWS_HOST }}
@@ -36,6 +36,18 @@ jobs:
         debug: true
         timeout: 3m
         overwrite: true
+        
+    - name: Demarrage de l'application 
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.AWS_HOST }}
+        username: ${{ secrets.AWS_SSH_USER }}
+        key: ${{ secrets.AWS_SSH_KEY }}
+        port: ${{ secrets.AWS_SSH_PORT }}
+        script: |
+          cd /usr/webservice/target
+          chmod +x greeting-spring-boot-0.0.1-SNAPSHOT.jar
+          java -jar greeting-spring-boot-0.0.1-SNAPSHOT.jar
       
 #    - name: Construire l'image docker
 #      uses: docker/build-push-action@v1.1.0
