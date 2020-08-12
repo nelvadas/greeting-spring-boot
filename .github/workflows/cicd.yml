@@ -47,7 +47,7 @@ jobs:
         script: |
           cd /usr/webservice/target
           chmod +x greeting-spring-boot-0.0.1-SNAPSHOT.jar
-          java -jar greeting-spring-boot-0.0.1-SNAPSHOT.jar
+          java -jar greeting-spring-boot-0.0.1-SNAPSHOT.jar &
       
 #    - name: Construire l'image docker
 #      uses: docker/build-push-action@v1.1.0
