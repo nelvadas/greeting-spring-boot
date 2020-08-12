@@ -23,15 +23,35 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: PWD
       run: pwd & ls -rtl
-    - name: Construire l'image docker
-      uses: docker/build-push-action@v1.1.0
+      
+    - name: Deployer le JAR 
+      uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+      env:
+        WELCOME: "Welcome"
+        LASTSSH: "Démarrage de l'application java"
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        repository: nelvadas/modelis-java-app
-        tags: 1.0.1
-        tag_with_ref: true
-        tag_with_sha: true
+        host: ${{ secrets.AWS_HOST }}
+        user: ${{ secrets.AWS_SSH_USER }}
+        key: ${{ secrets.AWS_SSH_KEY }}
+        port: ${{ secrets.AWS_SSH_PORT }}
+        connect_timeout: 30s
+        first_ssh: |
+          java -version 
+        scp: |
+          ./target/greeting-spring-boot-0.0.1-SNAPSHOT.jar => /usr/webservice/app.jar
+        last_ssh: |
+          echo $LASTSSH && java -jar /usr/webservice/app.jar 
+   
+      
+#    - name: Construire l'image docker
+#      uses: docker/build-push-action@v1.1.0
+#      with:
+#        username: ${{ secrets.DOCKER_USERNAME }}
+#        password: ${{ secrets.DOCKER_PASSWORD }}
+#        repository: nelvadas/modelis-java-app
+#        tags: 1.0.1
+#        tag_with_ref: true
+#       tag_with_sha: true
     
   deploy:
     needs: [build]
