@@ -31,8 +31,11 @@ jobs:
         username: ${{ secrets.AWS_SSH_USER }}
         key: ${{ secrets.AWS_SSH_KEY }}
         port: ${{ secrets.AWS_SSH_PORT }}
-        source: "target/greeting-spring-boot-0.0.1-SNAPSHOT.jar"
-        target: "/usr/webservice/app.jar" 
+        source: "./target/greeting-spring-boot-0.0.1-SNAPSHOT.jar"
+        target: "/usr/webservice"
+        debug: true
+        timeout: 3m
+        overwrite: true
       
 #    - name: Construire l'image docker
 #      uses: docker/build-push-action@v1.1.0
