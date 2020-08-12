@@ -46,6 +46,7 @@ jobs:
         port: ${{ secrets.AWS_SSH_PORT }}
         script: |
           cd /usr/webservice/target
+          pkill -e java
           chmod +x greeting-spring-boot-0.0.1-SNAPSHOT.jar
           java -jar greeting-spring-boot-0.0.1-SNAPSHOT.jar &
       
