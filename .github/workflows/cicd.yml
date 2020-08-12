@@ -25,7 +25,7 @@ jobs:
       run: pwd & ls -rtl
       
     - name: Deployer le JAR 
-      uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+      uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.0
       env:
         WELCOME: "Welcome"
         LASTSSH: "Démarrage de l'application java"
