@@ -1,0 +1,15 @@
+kind: Service
+metadata:
+  labels:
+    app: app-greeting-springboot
+  name: greeting
+  namespace: default
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app-greeting-springboot
+  sessionAffinity: None
+  type: ClusterIP
