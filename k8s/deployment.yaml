@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greeting
+  labels:
+    app: app-greeting-springboot
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app-greeting-springboot
+  template:
+    metadata:
+      labels:
+        app: app-greeting-springboot
+    spec:
+      containers:
+      - name: greeting-server-container
+        image: nelvadas/modelis-java-app:1.0.1
+        ports:
+        - containerPort: 8080
