@@ -28,7 +28,7 @@ spec:
           tcpSocket:
             port: 5432
           initialDelaySeconds: 10
-          periodSeconds: 30
+          periodSeconds: 20
             
            
 
