@@ -19,16 +19,16 @@ spec:
         image: nelvadas/modelis-postgresql:1.0.1
         ports:
         - containerPort: 5432
-          readinessProbe:
-            tcpSocket:
-              port: 5432
-            initialDelaySeconds: 10
-            periodSeconds: 5
-          livenessProbe: 
-            tcpSocket:
-              port: 5432
-            initialDelaySeconds: 10
-            periodSeconds: 30
+        readinessProbe:
+          tcpSocket:
+            port: 5432
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        livenessProbe: 
+          tcpSocket:
+            port: 5432
+          initialDelaySeconds: 10
+          periodSeconds: 30
             
            
 
