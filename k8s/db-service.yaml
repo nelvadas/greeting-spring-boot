@@ -1,0 +1,20 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app-greeting-springboot
+  name: greeting-db-svc
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 35432
+    port: 5432
+    protocol: TCP
+    targetPort: 5432
+  selector:
+    app: app-greeting-springboot
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
