@@ -5,7 +5,7 @@ metadata:
   labels:
     app: app-greeting-springboot
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: app-greeting-springboot
@@ -15,7 +15,24 @@ spec:
         app: app-greeting-springboot
     spec:
       containers:
-      - name: greeting-db
+      - name: greeting-db-container
         image: nelvadas/modelis-postgresql:1.0.1
         ports:
         - containerPort: 5432
+          readinessProbe:
+            tcpSocket:
+              port: 5432
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe: 
+            tcpSocket:
+              port: 5432
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            
+           
+
+
+
+
+
