@@ -41,7 +41,10 @@ bitnami/postgresql-ha   3.8.1           11.9.0          Chart for PostgreSQL wit
 
 ## Install a valid postgresql instance 
 ```
-helm install pg-db-01  --set persistence.enabled=false --set postgresqlPassword=Secret01#,postgresqlDatabase=modelis-pg-db  bitnami/postgresql
+helm install pg-db-01  \
+--set persistence.enabled=false \
+--set postgresqlPassword=Secret01#,postgresqlDatabase=modelis-pg-db \
+bitnami/postgresql
 ```
 
 # Docs
